@@ -1,21 +1,44 @@
-// LandingPage.js
 import React from 'react';
-import { Box, Button, Center } from '@chakra-ui/react';
+import { Box, Button, Container, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
     return (
-        <Center h="100vh">
-            <Box textAlign="center">
-                <h1>Welcome to My App</h1>
-                <Button colorScheme="blue" mt={4}>Create a New List</Button>
-                <Box mt={4}>
-                    <p>Already have an account?</p>
-                    <Button as={Link} to="/login" colorScheme="blue" ml={2}>Login</Button>
-                    <Button as={Link} to="/register" colorScheme="green" ml={2}>Register</Button>
-                </Box>
+        <Container maxWidth="md">
+            <Box textAlign="center" mt={10}>
+                <Typography variant="h2" gutterBottom>Welcome to JUBILEE</Typography>
+                <Button
+                    component={Link}
+                    to="/create"
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    sx={{ mt: 4, mr: 2 }}
+                >
+                    Create a New List
+                </Button>
+                <Button
+                    component={Link}
+                    to="/login"
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    sx={{ mt: 4 }}
+                >
+                    Login
+                </Button>
+                <Button
+                    component={Link}
+                    to="/register"
+                    variant="contained"
+                    color="secondary"
+                    size="large"
+                    sx={{ mt: 4, ml: 2 }}
+                >
+                    Register
+                </Button>
             </Box>
-        </Center>
+        </Container>
     );
 };
 

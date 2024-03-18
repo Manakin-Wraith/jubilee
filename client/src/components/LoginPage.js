@@ -1,52 +1,66 @@
-// components/LoginPage.js
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { loginUser } from '../services/auth';
-import { loginSuccess, loginFailure } from '../redux/actions/actions';
+import { Box, Button, Container, TextField, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
-  const dispatch = useDispatch();
-  const [credentials, setCredentials] = useState({
-    username: '',
-    password: '',
-  });
-
-  const handleLogin = async () => {
-    try {
-      const token = await loginUser(credentials);
-      dispatch(loginSuccess(token));
-    } catch (error) {
-      dispatch(loginFailure(error.message));
-    }
-  };
-
-  const handleChange = (e) => {
-    setCredentials({
-      ...credentials,
-      [e.target.name]: e.target.value,
+    const [credentials, setCredentials] = useState({
+        username: '',
+        password: '',
     });
-  };
 
-  return (
-    <div>
-      <h1>Login Page</h1>
-      <input
-        type="text"
-        name="username"
-        value={credentials.username}
-        onChange={handleChange}
-        placeholder="Username"
-      />
-      <input
-        type="password"
-        name="password"
-        value={credentials.password}
-        onChange={handleChange}
-        placeholder="Password"
-      />
-      <button onClick={handleLogin}>Login</button>
-    </div>
-  );
+    const handleChange = (e) => {
+        setCredentials({
+            ...credentials,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Handle form submission logic here
+    };
+
+    return (
+        <Container maxWidth="xs">
+            <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <Typography component="h1" variant="h5">Login</Typography>
+                <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="username"
+                        label="Username"
+                        name="username"
+                        autoFocus
+                        value={credentials.username}
+                        onChange={handleChange}
+                    />
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Password"
+                        type="password"
+                        id="password"
+                        value={credentials.password}
+                        onChange={handleChange}
+                    />
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        sx={{ mt: 3, mb: 2 }}
+                    >
+                        Login
+                    </Button>
+                </Box>
+                <Link to="/register">Don't have an account? Register here.</Link>
+            </Box>
+        </Container>
+    );
 };
 
 export default LoginPage;

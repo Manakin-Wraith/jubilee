@@ -1,12 +1,12 @@
-// RegisterPage.js
 import React, { useState } from 'react';
-import { Box, Button, FormControl, FormLabel, Input, Heading, VStack } from '@chakra-ui/react';
+import { Box, Button, Container, TextField, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const RegisterPage = () => {
     const [formData, setFormData] = useState({
         username: '',
         email: '',
-        password: ''
+        password: '',
     });
 
     const handleChange = (e) => {
@@ -19,26 +19,56 @@ const RegisterPage = () => {
     };
 
     return (
-        <Box p={8} maxWidth="400px" mx="auto">
-            <Heading as="h1" size="xl" textAlign="center" mb={8}>Register</Heading>
-            <form onSubmit={handleSubmit}>
-                <VStack spacing={4}>
-                    <FormControl id="username" isRequired>
-                        <FormLabel>Username</FormLabel>
-                        <Input type="text" name="username" value={formData.username} onChange={handleChange} />
-                    </FormControl>
-                    <FormControl id="email" isRequired>
-                        <FormLabel>Email</FormLabel>
-                        <Input type="email" name="email" value={formData.email} onChange={handleChange} />
-                    </FormControl>
-                    <FormControl id="password" isRequired>
-                        <FormLabel>Password</FormLabel>
-                        <Input type="password" name="password" value={formData.password} onChange={handleChange} />
-                    </FormControl>
-                    <Button type="submit" colorScheme="blue">Register</Button>
-                </VStack>
-            </form>
-        </Box>
+        <Container maxWidth="xs">
+            <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <Typography component="h1" variant="h5">Register</Typography>
+                <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="username"
+                        label="Username"
+                        name="username"
+                        autoFocus
+                        value={formData.username}
+                        onChange={handleChange}
+                    />
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="email"
+                        label="Email Address"
+                        name="email"
+                        autoComplete="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                    />
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Password"
+                        type="password"
+                        id="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                    />
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        sx={{ mt: 3, mb: 2 }}
+                    >
+                        Register
+                    </Button>
+                </Box>
+                <Link to="/login">Already have an account? Login here.</Link>
+            </Box>
+        </Container>
     );
 };
 
