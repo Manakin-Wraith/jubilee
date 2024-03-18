@@ -1,9 +1,31 @@
-import React from 'react';
-import { Box, Button, Container, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { Box, Button, Container, Typography, Dialog, DialogTitle, DialogContent, DialogActions, TextField } from '@mui/material';
 import { Add } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const LandingPage = () => {
+    const [openModal, setOpenModal] = useState(false);
+    const [mode, setMode] = useState('login'); // Track the mode: 'login' or 'register'
+    const navigate = useNavigate();
+
+    const handleModalOpen = () => {
+        setOpenModal(true);
+    };
+
+    const handleModalClose = () => {
+        setOpenModal(false);
+    };
+
+    const handleSwitchMode = () => {
+        // Toggle between login and register modes
+        setMode(mode === 'login' ? 'register' : 'login');
+    };
+
+    const handleAuthentication = () => {
+        // Simulate authentication (replace with your actual authentication logic)
+        navigate('/create');
+    };
+
     return (
         <Container maxWidth="md">
             <Box textAlign="center" mt={10}>
@@ -12,17 +34,48 @@ const LandingPage = () => {
                     Gift them what they want! Save, share, and link your gift lists with your circle.
                 </Typography>
                 <Button
-                    component={Link}
-                    to="/create"
+                    onClick={handleModalOpen}
                     variant="contained"
                     color="primary"
                     size="large"
                     sx={{ mt: 4, fontWeight: 'bold' }} // Increase button weight for emphasis
                     startIcon={<Add />}
                 >
-                    Create a New List
+                    Create Your List
                 </Button>
             </Box>
+
+            {/* Login/Register Modal */}
+            <Dialog open={openModal} onClose={handleModalClose}>
+                <DialogTitle>{mode === 'login' ? 'Login' : 'Register'}</DialogTitle>
+                <DialogContent>
+                    {mode === 'login' ? (
+                        <>
+                            <TextField label="Username" variant="outlined" fullWidth sx={{ mb: 2 }} />
+                            <TextField label="Password" type="password" variant="outlined" fullWidth />
+                        </>
+                    ) : (
+                        <>
+                            <TextField label="Username" variant="outlined" fullWidth sx={{ mb: 2 }} />
+                            <TextField label="Email" type="email" variant="outlined" fullWidth sx={{ mb: 2 }} />
+                            <TextField label="Password" type="password" variant="outlined" fullWidth />
+                        </>
+                    )}
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleModalClose} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={() => { handleModalClose(); handleAuthentication(); }} color="primary" variant="contained">
+                        {mode === 'login' ? 'Login' : 'Register'}
+                    </Button>
+                </DialogActions>
+                <DialogActions>
+                    <Button onClick={handleSwitchMode} color="primary" variant="text">
+                        {mode === 'login' ? 'No account? Register' : 'Already have an account? Login'}
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </Container>
     );
 };
