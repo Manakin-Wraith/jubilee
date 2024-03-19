@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Box, Button, Container, TextField, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
     const [credentials, setCredentials] = useState({
         username: '',
         password: '',
     });
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setCredentials({
@@ -17,7 +19,16 @@ const LoginPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle form submission logic here
+        // Simulated login logic
+        // Here you would have actual authentication logic
+        const isLoggedIn = true; // Simulated successful login
+        if (isLoggedIn) {
+            // Navigate to the wishlist page '/create'
+            navigate('/create');
+        } else {
+            // Handle unsuccessful login
+            console.log('Login failed');
+        }
     };
 
     return (

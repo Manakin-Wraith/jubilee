@@ -51,36 +51,37 @@ const LandingPage = () => {
             </Box>
 
             {/* Login/Register Modal */}
-            <Dialog open={openModal} onClose={handleModalClose}>
-                <DialogTitle>{mode === 'login' ? 'Login' : 'Register'}</DialogTitle>
-                <DialogContent>
-                    {mode === 'login' ? (
-                        <>
-                            <TextField label="Username" variant="outlined" fullWidth sx={{ mb: 2 }} />
-                            <TextField label="Password" type="password" variant="outlined" fullWidth />
-                        </>
-                    ) : (
-                        <>
-                            <TextField label="Username" variant="outlined" fullWidth sx={{ mb: 2 }} />
-                            <TextField label="Email" type="email" variant="outlined" fullWidth sx={{ mb: 2 }} />
-                            <TextField label="Password" type="password" variant="outlined" fullWidth />
-                        </>
-                    )}
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleModalClose} color="primary">
-                        Cancel
-                    </Button>
-                    <Button onClick={() => { handleModalClose(); handleAuthentication(); }} color="primary" variant="contained">
-                        {mode === 'login' ? 'Login' : 'Register'}
-                    </Button>
-                </DialogActions>
-                <DialogActions>
-                    <Button onClick={handleSwitchMode} color="primary" variant="text">
-                        {mode === 'login' ? 'No account? Register' : 'Already have an account? Login'}
-                    </Button>
-                </DialogActions>
-            </Dialog>
+<Dialog open={openModal} onClose={handleModalClose} maxWidth="sm" fullWidth>
+    <DialogTitle>{mode === 'login' ? 'Login' : 'Register'}</DialogTitle>
+    <DialogContent sx={{ height: '300px' }}>
+        {mode === 'login' ? (
+            <>
+                <TextField label="Username" variant="outlined" fullWidth sx={{ mb: 2 }} />
+                <TextField label="Password" type="password" variant="outlined" fullWidth />
+            </>
+        ) : (
+            <>
+                <TextField label="Username" variant="outlined" fullWidth sx={{ mb: 2 }} />
+                <TextField label="Cellphone Number" type="tel" variant="outlined" fullWidth sx={{ mb: 2 }} />
+                <TextField label="Password" type="password" variant="outlined" fullWidth />
+            </>
+        )}
+    </DialogContent>
+    <DialogActions>
+        <Button onClick={handleModalClose} color="primary">
+            Cancel
+        </Button>
+        <Button onClick={() => { handleModalClose(); handleAuthentication(); }} color="primary" variant="contained">
+            {mode === 'login' ? 'Login' : 'Register'}
+        </Button>
+    </DialogActions>
+    <DialogActions>
+        <Button onClick={handleSwitchMode} color="primary" variant="text">
+            {mode === 'login' ? 'No account? Register' : 'Already have an account? Login'}
+        </Button>
+    </DialogActions>
+</Dialog>
+
 
             {/* Profile Page */}
             {isRegistered && <ProfilePage />}
