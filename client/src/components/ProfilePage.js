@@ -27,7 +27,7 @@ const ProfilePage = () => {
             <Box textAlign="center" mt={5}>
                 <Typography variant="h1" gutterBottom>User Profile</Typography>
                 <Box mt={3} display="flex" flexDirection="column" alignItems="center">
-                    <Avatar sx={{ width: 120, height: 120, mb: 2 }}>U</Avatar>
+                    <Avatar sx={{ width: 120, height: 120, mb: 2 }}>Image</Avatar>
                     <Typography variant="body1" sx={{ mb: 2 }}>
                         <Link href="#" color="primary" underline="always">
                             Edit

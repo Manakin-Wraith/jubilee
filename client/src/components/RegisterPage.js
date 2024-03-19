@@ -1,8 +1,9 @@
+// RegisterPage.jsx
 import React, { useState } from 'react';
 import { Box, Button, Container, TextField, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-const RegisterPage = () => {
+const RegisterPage = ({ onClose, onSwitchMode, onRegister }) => {
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -15,7 +16,7 @@ const RegisterPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle form submission logic here
+        onRegister(formData);
     };
 
     return (
@@ -66,7 +67,7 @@ const RegisterPage = () => {
                         Register
                     </Button>
                 </Box>
-                <Link to="/login">Already have an account? Login here.</Link>
+                <Link to="/login" onClick={onSwitchMode}>Already have an account? Login here.</Link>
             </Box>
         </Container>
     );
