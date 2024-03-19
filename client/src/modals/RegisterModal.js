@@ -1,5 +1,5 @@
-// RegisterModal.jsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Typography } from '@mui/material';
 
 const RegisterModal = ({ open, onClose }) => {
@@ -7,13 +7,16 @@ const RegisterModal = ({ open, onClose }) => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleRegister = () => {
         // Perform registration logic here, for example, validate inputs
         if (password !== confirmPassword) {
             setError("Passwords don't match");
         } else {
-            // Proceed with registration logic
+            // Assume registration is successful
+            // Navigate to the profile page
+            navigate('/profile');
         }
     };
 
@@ -29,8 +32,6 @@ const RegisterModal = ({ open, onClose }) => {
                     fullWidth
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    error={error !== ''}
-                    helperText={error}
                 />
                 <TextField
                     margin="dense"
