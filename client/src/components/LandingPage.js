@@ -1,34 +1,32 @@
 import React, { useState } from 'react';
-import { Box, Button, Container, Typography, Dialog, DialogTitle, DialogContent, DialogActions, TextField } from '@mui/material';
+import { Box, Button, Container, Typography } from '@mui/material';
 import { Add } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
-import ProfilePage from './ProfilePage'; // Import your ProfilePage component
+import LoginModal from '../modals/LoginModal';
+import RegisterModal from '../modals/RegisterModal';
 
 const LandingPage = () => {
-    const [openModal, setOpenModal] = useState(false);
-    const [mode, setMode] = useState('login'); // Track the mode: 'login' or 'register'
-    const [isRegistered, setIsRegistered] = useState(false); // Track user registration status
-    const navigate = useNavigate();
+    const [openLoginModal, setOpenLoginModal] = useState(false);
+    const [openRegisterModal, setOpenRegisterModal] = useState(false);
 
-    const handleModalOpen = () => {
-        setOpenModal(true);
+    const handleCreateList = () => {
+        setOpenLoginModal(true);
     };
 
-    const handleModalClose = () => {
-        setOpenModal(false);
+    const handleLoginModalClose = () => {
+        setOpenLoginModal(false);
     };
 
-    const handleSwitchMode = () => {
-        // Toggle between login and register modes
-        setMode(mode === 'login' ? 'register' : 'login');
+    const handleLoginSuccess = () => {
+        setOpenLoginModal(false);
     };
 
-    const handleAuthentication = () => {
-        // Simulate authentication (replace with your actual authentication logic)
-        if (mode === 'register') {
-            setIsRegistered(true); // Set user as registered after successful registration
-        }
-        navigate('/profile'); // Redirect to profile page after registration/login
+    const handleLoginModalLinkClick = () => {
+        setOpenLoginModal(false);
+        setOpenRegisterModal(true);
+    };
+
+    const handleRegisterModalClose = () => {
+        setOpenRegisterModal(false);
     };
 
     return (
@@ -39,51 +37,36 @@ const LandingPage = () => {
                     Gift them what they want! Save, share, and link your gift lists with your circle.
                 </Typography>
                 <Button
-                    onClick={handleModalOpen}
+                    onClick={handleCreateList}
                     variant="contained"
                     color="primary"
                     size="large"
-                    sx={{ mt: 4, fontWeight: 'bold' }} // Increase button weight for emphasis
+                    sx={{ mt: 4, fontWeight: 'bold' }}
                     startIcon={<Add />}
                 >
                     Create Your List
                 </Button>
             </Box>
 
-            {/* Login/Register Modal */}
-            <Dialog open={openModal} onClose={handleModalClose}>
-                <DialogTitle>{mode === 'login' ? 'Login' : 'Register'}</DialogTitle>
-                <DialogContent>
-                    {mode === 'login' ? (
-                        <>
-                            <TextField label="Username" variant="outlined" fullWidth sx={{ mb: 2 }} />
-                            <TextField label="Password" type="password" variant="outlined" fullWidth />
-                        </>
-                    ) : (
-                        <>
-                            <TextField label="Username" variant="outlined" fullWidth sx={{ mb: 2 }} />
-                            <TextField label="Email" type="email" variant="outlined" fullWidth sx={{ mb: 2 }} />
-                            <TextField label="Password" type="password" variant="outlined" fullWidth />
-                        </>
-                    )}
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleModalClose} color="primary">
-                        Cancel
-                    </Button>
-                    <Button onClick={() => { handleModalClose(); handleAuthentication(); }} color="primary" variant="contained">
-                        {mode === 'login' ? 'Login' : 'Register'}
-                    </Button>
-                </DialogActions>
-                <DialogActions>
-                    <Button onClick={handleSwitchMode} color="primary" variant="text">
-                        {mode === 'login' ? 'No account? Register' : 'Already have an account? Login'}
-                    </Button>
-                </DialogActions>
-            </Dialog>
-
-            {/* Profile Page */}
-            {isRegistered && <ProfilePage />}
+            <Box
+                sx={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    backdropFilter: 'blur(8px)',
+                    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                    display: openLoginModal || openRegisterModal ? 'block' : 'none',
+                }}
+            >
+                {openLoginModal && (
+                    <LoginModal open={openLoginModal} onClose={handleLoginModalClose} onSuccess={handleLoginSuccess} onRegisterLinkClick={handleLoginModalLinkClick} />
+                )}
+                {openRegisterModal && (
+                    <RegisterModal open={openRegisterModal} onClose={handleRegisterModalClose} />
+                )}
+            </Box>
         </Container>
     );
 };
