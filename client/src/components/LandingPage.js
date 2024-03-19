@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { Box, Button, Container, Typography, Dialog, DialogTitle, DialogContent, DialogActions, TextField } from '@mui/material';
 import { Add } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import ProfilePage from './ProfilePage'; // Import your ProfilePage component
 
 const LandingPage = () => {
     const [openModal, setOpenModal] = useState(false);
     const [mode, setMode] = useState('login'); // Track the mode: 'login' or 'register'
+    const [isRegistered, setIsRegistered] = useState(false); // Track user registration status
     const navigate = useNavigate();
 
     const handleModalOpen = () => {
@@ -23,7 +25,10 @@ const LandingPage = () => {
 
     const handleAuthentication = () => {
         // Simulate authentication (replace with your actual authentication logic)
-        navigate('/create');
+        if (mode === 'register') {
+            setIsRegistered(true); // Set user as registered after successful registration
+        }
+        navigate('/profile'); // Redirect to profile page after registration/login
     };
 
     return (
@@ -76,6 +81,9 @@ const LandingPage = () => {
                     </Button>
                 </DialogActions>
             </Dialog>
+
+            {/* Profile Page */}
+            {isRegistered && <ProfilePage />}
         </Container>
     );
 };

@@ -6,6 +6,7 @@ import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage'; // Import RegisterPage component
 import CreateWishlistItemPage from './components/CreateWishlistItemPage';
 import Navigation from './components/Navigation';
+import ProfilePage from './components/ProfilePage';
 
 const App = () => {
     return (
@@ -16,7 +17,8 @@ const App = () => {
                 <Route exact path="/" element={<LandingPage />} />
                 <Route path="/create" element={<CreateWishlistItemPage />} />
                 <Route path="/login" element={<LoginPage />} />
-                <Route path="/register" element={<RegisterPage />} /> {/* Add route for RegisterPage */}
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/profile" element={<ProfilePage />} /> {/* Add route for RegisterPage */}
                 {/* Add more routes as needed */}
             </Routes>
             </div>
