@@ -26,6 +26,13 @@ const ListPage = ({ wishlistTitle }) => {
         }
     };
 
+    const handleAddContactsFromPhone = () => {
+        // Code to access user's phone contacts and add them to the wishlist
+        // This can involve using a library or API to access phone contacts
+        // Once contacts are selected, add them to the wishlist and update the UI
+        console.log('Adding contacts from phone...');
+    };
+
     return (
         <Container maxWidth="md">
             <Box textAlign="center" mt={5}>
@@ -51,6 +58,11 @@ const ListPage = ({ wishlistTitle }) => {
                         onClick={handleAddItem}
                     >
                         Add
+                    </Button>
+                </Box>
+                <Box mt={2}>
+                    <Button variant="contained" color="primary" onClick={handleAddContactsFromPhone}>
+                        Add Contacts from Phone
                     </Button>
                 </Box>
             </Box>
