@@ -1,10 +1,14 @@
 // ListPage.js
 import React, { useState } from 'react';
 import { Box, Container, Typography, Button, TextField } from '@mui/material';
+import { useLocation } from 'react-router-dom';
 
 const ListPage = ({ wishlistTitle }) => {
+    const location = useLocation();
+    const title = new URLSearchParams(location.search).get('title');
     const [wishlistItems, setWishlistItems] = useState([]);
     const [inputValue, setInputValue] = useState('');
+
 
     const handleChange = (e) => {
         setInputValue(e.target.value);
@@ -25,7 +29,7 @@ const ListPage = ({ wishlistTitle }) => {
     return (
         <Container maxWidth="md">
             <Box textAlign="center" mt={5}>
-                <Typography variant="h1" gutterBottom>{wishlistTitle}</Typography>
+                <Typography variant="h1" gutterBottom>{title}</Typography>
                 {wishlistItems.map((item, index) => (
                     <div key={index}>
                         <Typography variant="h6">{item.title}</Typography>
