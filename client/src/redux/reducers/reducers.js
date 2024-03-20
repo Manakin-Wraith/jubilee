@@ -1,6 +1,7 @@
 // reducers.js
 import { combineReducers } from 'redux';
-import { LOGIN_SUCCESS, LOGIN_FAILURE } from '../actions/actions';
+import { LOGIN_SUCCESS, LOGIN_FAILURE } from '../../actions/actions';
+import wishlistReducer from './wishlistReducer'; // Import wishlist reducer
 
 const initialState = {
   token: null,
@@ -28,6 +29,7 @@ const authReducer = (state = initialState, action) => {
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  wishlist: wishlistReducer, // Add wishlist reducer here
   // Add more reducers as needed
 });
 

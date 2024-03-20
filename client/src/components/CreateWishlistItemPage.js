@@ -1,24 +1,44 @@
+// CreateWishlistItemPage.js
 import React, { useState } from 'react';
-import { Box, Button, Container, TextField, Typography } from '@mui/material';
+import { Box, Button, Container, TextField, Typography, FormControlLabel, Switch } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setWishlistTitle } from '../actions/wishlistActions';
+
 
 const CreateWishlistItemPage = () => {
     const [wishlistItem, setWishlistItem] = useState({
-        image: '',
-        title: '',
-        notes: '',
-        url: '',
+      title: '',
+      isPrivate: false,
     });
+    const dispatch = useDispatch();
+  
+    const navigate = useNavigate(); // Initialize useNavigate hook
 
     const handleChange = (e) => {
-        setWishlistItem({
-            ...wishlistItem,
-            [e.target.name]: e.target.value,
-        });
+        const { name, value } = e.target;
+        setWishlistItem(prevState => ({
+          ...prevState,
+          [name]: value,
+        }));
+    
+        // Dispatch action to update wishlist title
+        dispatch(setWishlistTitle(value));
+      };
+    
+
+    const handleToggle = () => {
+        setWishlistItem(prevState => ({
+            ...prevState,
+            isPrivate: !prevState.isPrivate,
+        }));
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         // Handle form submission logic here
+        // For demonstration purposes, we'll just navigate to the list page
+        navigate(`/list/${wishlistItem.title}`);
     };
 
     return (
@@ -26,15 +46,6 @@ const CreateWishlistItemPage = () => {
             <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Typography component="h1" variant="h5">Create Wishlist Item</Typography>
                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, width: '100%' }}>
-                    <TextField
-                        margin="normal"
-                        fullWidth
-                        id="image"
-                        label="Image URL"
-                        name="image"
-                        value={wishlistItem.image}
-                        onChange={handleChange}
-                    />
                     <TextField
                         margin="normal"
                         required
@@ -45,25 +56,9 @@ const CreateWishlistItemPage = () => {
                         value={wishlistItem.title}
                         onChange={handleChange}
                     />
-                    <TextField
-                        margin="normal"
-                        fullWidth
-                        id="notes"
-                        label="Notes"
-                        name="notes"
-                        multiline
-                        rows={4}
-                        value={wishlistItem.notes}
-                        onChange={handleChange}
-                    />
-                    <TextField
-                        margin="normal"
-                        fullWidth
-                        id="url"
-                        label="URL"
-                        name="url"
-                        value={wishlistItem.url}
-                        onChange={handleChange}
+                    <FormControlLabel
+                        control={<Switch checked={wishlistItem.isPrivate} onChange={handleToggle} />}
+                        label="Make list private"
                     />
                     <Button
                         type="submit"
@@ -71,7 +66,7 @@ const CreateWishlistItemPage = () => {
                         color="primary"
                         sx={{ mt: 3, mb: 2 }}
                     >
-                        Add Wishlist Item
+                        Save and Continue
                     </Button>
                 </Box>
             </Box>
