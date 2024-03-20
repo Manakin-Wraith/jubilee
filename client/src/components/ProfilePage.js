@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Button, Container, Typography, TextField, Avatar, Link } from '@mui/material';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 import gerhard from '../images/gerhard.jpeg';
 
 const ProfilePage = () => {
@@ -10,9 +11,18 @@ const ProfilePage = () => {
         bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     });
 
+    const navigate = useNavigate(); // Initialize useNavigate hook
+
     // Handle profile update
     const handleProfileUpdate = (field, value) => {
         setProfile({ ...profile, [field]: value });
+    };
+
+    // Handle save profile button click
+    const handleSaveProfile = () => {
+        // Save profile logic
+        // Navigate to the create page
+        navigate('/create');
     };
 
     return (
@@ -47,7 +57,7 @@ const ProfilePage = () => {
                         fullWidth
                         sx={{ mb: 2 }}
                     />
-                    <Button variant="contained" color="primary" sx={{ mb: 2 }}>
+                    <Button variant="contained" color="primary" onClick={handleSaveProfile} sx={{ mb: 2 }}>
                         Save Profile
                     </Button>
                 </Box>
