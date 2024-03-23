@@ -46,6 +46,16 @@ const LandingPage = () => {
                 >
                     Create Your List
                 </Button>
+                <Box sx={{ mt: 5 }}>
+                    <Typography variant="body2" gutterBottom>
+                        Already have an account?{' '}
+                        <span style={{ cursor: 'pointer', color: 'blue' }} onClick={setOpenLoginModal}>Log in</span>
+                    </Typography>
+                    <Typography variant="body2">
+                        New here?{' '}
+                        <span style={{ cursor: 'pointer', color: 'blue' }} onClick={() => setOpenRegisterModal(true)}>Register</span>
+                    </Typography>
+                </Box>
             </Box>
 
             <Box
