@@ -35,7 +35,7 @@ const CreateWishlistItemPage = () => {
         <Container maxWidth="md">
             <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Typography component="h1" variant="h5">What do you want to call your gift list?</Typography>
-                <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, width: '100%' }}>
+                <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, width: '50%' }}>
                     <TextField
                         margin="normal"
                         required
@@ -46,15 +46,18 @@ const CreateWishlistItemPage = () => {
                         value={wishlistItem.title}
                         onChange={handleChange}
                     />
-                    <FormControlLabel
-                        control={<Switch checked={wishlistItem.isPrivate} onChange={handleToggle} />}
-                        label="Make list private"
-                    />
+                    <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center', width: '100%' }}>
+                        <FormControlLabel
+                            control={<Switch checked={wishlistItem.isPrivate} onChange={handleToggle} />}
+                            label="Make list private"
+                            sx={{ flexGrow: 1, textAlign: 'center', marginLeft: 14 }}
+                        />
+                    </Box>
                     <Button
                         type="submit"
                         variant="contained"
                         color="primary"
-                        sx={{ mt: 3, mb: 2 }}
+                        sx={{ mt: 5, marginLeft: 14 }}
                     >
                         Save and Continue
                     </Button>
