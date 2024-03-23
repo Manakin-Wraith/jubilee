@@ -50,12 +50,13 @@ const ListPage = ({ wishlistTitle }) => {
                         onChange={handleChange}
                         label="Add Item"
                         fullWidth
-                        sx={{ mr: 2 }}
+                        sx={{ mr: 2, mt: 3 }}
                     />
                     <Button
                         variant="contained"
                         color="primary"
                         onClick={handleAddItem}
+                        sx={{mt: 3}}
                     >
                         Add
                     </Button>
