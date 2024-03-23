@@ -33,7 +33,7 @@ const LandingPage = () => {
         <Container maxWidth="md">
             <Box textAlign="center" mt={10}>
                 <Typography variant="h1" gutterBottom>Welcome to JUBILEE</Typography>
-                <Typography variant="body1" gutterBottom>
+                <Typography variant="h4" gutterBottom>
                     Gift them what they want! Save, share, and link your gift lists with your circle.
                 </Typography>
                 <Button
