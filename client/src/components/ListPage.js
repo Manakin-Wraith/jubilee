@@ -60,7 +60,7 @@ const ListPage = ({ wishlistTitle }) => {
                         Add
                     </Button>
                 </Box>
-                <Box mt={2}>
+                <Box mt={3}>
                     <Button variant="contained" color="primary" onClick={handleAddContactsFromPhone}>
                         Add Contacts from Phone
                     </Button>

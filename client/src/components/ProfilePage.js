@@ -28,7 +28,8 @@ const ProfilePage = () => {
     return (
         <Container maxWidth="md">
             <Box textAlign="center" mt={5}>
-                <Typography variant="h1" gutterBottom>User Profile</Typography>
+                <Typography variant="h2" gutterBottom>Congrats!</Typography>
+                <Typography variant="h4" gutterBottom>Your new profile is created, save or edit and continue!</Typography>
                 <Box mt={3} display="flex" flexDirection="column" alignItems="center">
                     <Avatar
                         alt={profile.username}
@@ -46,7 +47,7 @@ const ProfilePage = () => {
                         value={profile.email}
                         disabled
                         fullWidth
-                        sx={{ mb: 2 }}
+                        sx={{ mb: 2, mt: 2 }}
                     />
                     <TextField
                         label="Bio"
@@ -55,7 +56,7 @@ const ProfilePage = () => {
                         value={profile.bio}
                         onChange={(e) => handleProfileUpdate('bio', e.target.value)}
                         fullWidth
-                        sx={{ mb: 2 }}
+                        sx={{ mb: 3, mt: 2 }}
                     />
                     <Button variant="contained" color="primary" onClick={handleSaveProfile} sx={{ mb: 2 }}>
                         Save Profile
