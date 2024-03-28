@@ -52,7 +52,7 @@ const ProfilePage = () => {
         <Container maxWidth="md">
             <Box textAlign="center" mt={5}>
                 <Typography variant="h2" gutterBottom>Congrats!</Typography>
-                <Typography variant="h4" gutterBottom>Your new profile is created, save or edit and continue!</Typography>
+                <Typography variant="h4" gutterBottom>Your new profile is created, edit and continue!</Typography>
                 <Box mt={3} display="flex" flexDirection="column" alignItems="center">
                     <Avatar
                         alt={profile.username}

@@ -111,14 +111,14 @@ const ListPage = ({ wishlistTitle }) => {
                             <TextField
                                 value={imageURL}
                                 onChange={handleImageChange}
-                                label="Image URL"
+                                label="Image URL(optional)"
                                 fullWidth
                                 sx={{ mr: 2 }}
                             />
                             <TextField
                                 value={itemURL}
                                 onChange={handleURLChange}
-                                label="Item URL"
+                                label="Item URL(optional)"
                                 fullWidth
                                 sx={{ mr: 2 }}
                             />
