@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 const parseItemURL = (url) => {
     // Implement parsing logic here (e.g., extract store details and product info)
     // For demonstration, return a placeholder string
-    return 'Where you can look my gift';
+    return 'Look at this gift';
 };
 
 const ListPage = ({ wishlistTitle }) => {
@@ -62,38 +62,39 @@ const ListPage = ({ wishlistTitle }) => {
                             sx={{ width: 100, height: 100, mb: 2, mr: 2 }}
                         />
                     )}
-                    <Typography variant="h2" gutterBottom>{title}</Typography>
+                    <Typography variant="h4" gutterBottom>{title}</Typography>
                 </Box>
                 <Grid container spacing={3}>
                     {wishlistItems.map((item, index) => (
                         <Grid item xs={12} md={6} lg={4} key={index}>
                             <Card variant="outlined">
-                                <CardContent>
-                                    <IconButton
-                                        color="error" // Set the color of the icon button
-                                        onClick={() => handleDeleteItem(index)}
-                                        sx={{ position: 'absolute', top: 0, right: 0, zIndex: 1 }} // Positioning
-                                    >
-                                        <Delete />
-                                    </IconButton>
-                                    <Typography variant="h5" component="h2" gutterBottom>
-                                        {item.title}
+                             <CardContent sx={{ position: 'relative' }}> {/* Add relative positioning */}
+                             <IconButton
+                                     color="error" // Set the color of the icon button
+                                     onClick={() => handleDeleteItem(index)}
+                                     sx={{ position: 'absolute', top: 0, right: 0, zIndex: 1 }} // Positioning
+                             >
+                              <Delete />
+                                </IconButton>
+                                    <Typography variant="h3" component="h2" gutterBottom>
+                                       {item.title}
                                     </Typography>
-                                    <Typography variant="body1">
-                                        {item.notes}
-                                    </Typography>
-                                    {item.image && (
-                                        <img src={item.image} alt="Item" style={{ maxWidth: '100%', marginTop: '8px' }} />
-                                    )}
-                                    {item.url && (
-                                        <Typography variant="body2" color="textSecondary">
-                                            <a href={item.url} target="_blank" rel="noopener noreferrer">
-                                                {parseItemURL(item.url)}
-                                            </a>
-                                        </Typography>
-                                    )}
-                                </CardContent>
-                            </Card>
+        <Typography variant="body1">
+            {item.notes}
+        </Typography>
+        {item.image && (
+            <img src={item.image} alt="Item" style={{ maxWidth: '100%', marginTop: '8px' }} />
+        )}
+        {item.url && (
+            <Typography variant="body2" color="textSecondary">
+                <a href={item.url} target="_blank" rel="noopener noreferrer">
+                    {parseItemURL(item.url)}
+                </a>
+            </Typography>
+        )}
+    </CardContent>
+</Card>
+
                         </Grid>
                     ))}
                 </Grid>
