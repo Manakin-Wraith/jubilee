@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Box, Button, Container, Typography, TextField, Avatar, Link } from '@mui/material';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 import gerhard from '../images/gerhard.jpeg';
@@ -9,9 +9,11 @@ const ProfilePage = () => {
         username: 'Gerhard Mostert',
         email: 'g.mostertpot@gmail.com',
         bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        profilePicture: null, // Add profile picture property
     });
 
     const navigate = useNavigate(); // Initialize useNavigate hook
+    const fileInputRef = useRef(null); // Reference to file input element
 
     // Handle profile update
     const handleProfileUpdate = (field, value) => {
@@ -25,6 +27,26 @@ const ProfilePage = () => {
         navigate('/create');
     };
 
+    // Handle edit link click
+    const handleEditClick = () => {
+        // Trigger file input click
+        fileInputRef.current.click();
+    };
+
+    // Handle file upload change
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            // Add logic to handle file upload (e.g., upload to server)
+            // For demonstration, updating profile picture directly
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setProfile({ ...profile, profilePicture: reader.result });
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     return (
         <Container maxWidth="md">
             <Box textAlign="center" mt={5}>
@@ -36,12 +58,22 @@ const ProfilePage = () => {
                         src={profile.profilePicture || gerhard} // Use profile picture or placeholder image
                         sx={{ width: 100, height: 100, mb: 2 }}
                     />
-                    <Typography variant="h6" gutterBottom>
-                        {profile.username}
-                    </Typography>
-                    <Link variant="body2" color="primary" underline="hover" href="#">
+                    <Link variant="body2"
+                        color="primary"
+                        underline="hover"
+                        href="#"
+                        onClick={handleEditClick}
+                        sx={{ ':hover': { textDecoration: 'none' } }} // Hover effect
+                    >
                         Edit
                     </Link>
+                    <input
+                        type="file"
+                        accept="image/*"
+                        ref={fileInputRef}
+                        style={{ display: 'none' }}
+                        onChange={handleFileChange}
+                    />
                     <TextField
                         label="Email"
                         value={profile.email}
@@ -68,3 +100,4 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
+
