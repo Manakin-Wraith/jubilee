@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
-import { Box, Container, Typography, Button, TextField, Card, CardContent, Grid, Avatar } from '@mui/material';
+import { Box, Container, Typography, Button, TextField, Card, CardContent, Grid, Avatar, IconButton } from '@mui/material';
+import { Delete } from '@mui/icons-material'; // Import Delete icon from MUI
 import { useLocation } from 'react-router-dom';
 
-
+// Function to parse the item URL and extract relevant information
+const parseItemURL = (url) => {
+    // Implement parsing logic here (e.g., extract store details and product info)
+    // For demonstration, return a placeholder string
+    return 'Where you can look my gift';
+};
 
 const ListPage = ({ wishlistTitle }) => {
     const location = useLocation();
@@ -40,6 +46,11 @@ const ListPage = ({ wishlistTitle }) => {
         }
     };
 
+    const handleDeleteItem = (index) => {
+        const updatedList = wishlistItems.filter((_, i) => i !== index);
+        setWishlistItems(updatedList);
+    };
+
     return (
         <Container maxWidth="md">
             <Box textAlign="center" mt={5}>
@@ -58,6 +69,13 @@ const ListPage = ({ wishlistTitle }) => {
                         <Grid item xs={12} md={6} lg={4} key={index}>
                             <Card variant="outlined">
                                 <CardContent>
+                                    <IconButton
+                                        color="error" // Set the color of the icon button
+                                        onClick={() => handleDeleteItem(index)}
+                                        sx={{ position: 'absolute', top: 0, right: 0, zIndex: 1 }} // Positioning
+                                    >
+                                        <Delete />
+                                    </IconButton>
                                     <Typography variant="h5" component="h2" gutterBottom>
                                         {item.title}
                                     </Typography>
@@ -65,13 +83,13 @@ const ListPage = ({ wishlistTitle }) => {
                                         {item.notes}
                                     </Typography>
                                     {item.image && (
-                                        <Typography variant="body2" color="textSecondary">
-                                            Image: {item.image}
-                                        </Typography>
+                                        <img src={item.image} alt="Item" style={{ maxWidth: '100%', marginTop: '8px' }} />
                                     )}
                                     {item.url && (
                                         <Typography variant="body2" color="textSecondary">
-                                            URL: {item.url}
+                                            <a href={item.url} target="_blank" rel="noopener noreferrer">
+                                                {parseItemURL(item.url)}
+                                            </a>
                                         </Typography>
                                     )}
                                 </CardContent>

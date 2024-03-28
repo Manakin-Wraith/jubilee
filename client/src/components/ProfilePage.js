@@ -2,7 +2,7 @@
 import React, { useState, useRef } from 'react';
 import { Box, Button, Container, Typography, TextField, Avatar, Link } from '@mui/material';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
-import gerhard from '../images/gerhard.jpeg';
+
 
 const ProfilePage = () => {
     // Mock profile data
@@ -56,7 +56,7 @@ const ProfilePage = () => {
                 <Box mt={3} display="flex" flexDirection="column" alignItems="center">
                     <Avatar
                         alt={profile.username}
-                        src={profile.profilePicture || gerhard} // Use profile picture or placeholder image
+                        src={profile.profilePicture} // Use profile picture or placeholder image
                         sx={{ width: 100, height: 100, mb: 2 }}
                     />
                     <Link
