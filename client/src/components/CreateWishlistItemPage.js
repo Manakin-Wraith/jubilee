@@ -41,7 +41,7 @@ const CreateWishlistItemPage = () => {
                         required
                         fullWidth
                         id="title"
-                        label="Name your list"
+                        label="ex. Birthday Gifts "
                         name="title"
                         value={wishlistItem.title}
                         onChange={handleChange}
