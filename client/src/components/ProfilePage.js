@@ -1,3 +1,4 @@
+// ProfilePage.js
 import React, { useState, useRef } from 'react';
 import { Box, Button, Container, Typography, TextField, Avatar, Link } from '@mui/material';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
@@ -24,7 +25,7 @@ const ProfilePage = () => {
     const handleSaveProfile = () => {
         // Save profile logic
         // Navigate to the create page
-        navigate('/create');
+        navigate('/create', { state: { profilePicture: profile.profilePicture } });
     };
 
     // Handle edit link click
@@ -58,7 +59,8 @@ const ProfilePage = () => {
                         src={profile.profilePicture || gerhard} // Use profile picture or placeholder image
                         sx={{ width: 100, height: 100, mb: 2 }}
                     />
-                    <Link variant="body2"
+                    <Link
+                        variant="body2"
                         color="primary"
                         underline="hover"
                         href="#"
@@ -100,4 +102,3 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
-

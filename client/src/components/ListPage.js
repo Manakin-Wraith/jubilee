@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { Box, Container, Typography, Button, TextField, Card, CardContent, Grid } from '@mui/material';
+import { Box, Container, Typography, Button, TextField, Card, CardContent, Grid, Avatar } from '@mui/material';
 import { useLocation } from 'react-router-dom';
-import AddIcon from '@mui/icons-material/Add';
+
 
 
 const ListPage = ({ wishlistTitle }) => {
     const location = useLocation();
     const title = new URLSearchParams(location.search).get('title');
+    const profilePicture = location.state?.profilePicture || null; // Access profile picture from location state
     const [wishlistItems, setWishlistItems] = useState([]);
     const [inputValue, setInputValue] = useState('');
     const [imageURL, setImageURL] = useState('');
@@ -42,7 +43,16 @@ const ListPage = ({ wishlistTitle }) => {
     return (
         <Container maxWidth="md">
             <Box textAlign="center" mt={5}>
-                <Typography variant="h2" gutterBottom>{title}</Typography>
+                <Box display="flex" alignItems="center" justifyContent="center">
+                    {profilePicture && (
+                        <Avatar
+                            alt="Profile Picture"
+                            src={profilePicture}
+                            sx={{ width: 100, height: 100, mb: 2, mr: 2 }}
+                        />
+                    )}
+                    <Typography variant="h2" gutterBottom>{title}</Typography>
+                </Box>
                 <Grid container spacing={3}>
                     {wishlistItems.map((item, index) => (
                         <Grid item xs={12} md={6} lg={4} key={index}>
@@ -99,7 +109,6 @@ const ListPage = ({ wishlistTitle }) => {
                         variant="contained"
                         color="primary"
                         onClick={handleAddItem}
-                        startIcon={<AddIcon />} // Add icon to the button
                     >
                         Add
                     </Button>
