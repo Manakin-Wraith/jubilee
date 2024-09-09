@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JUBILEE - Early Access Sign Up</title>
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎁</text></svg>">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+        .hero, .signup-section, .benefits {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 2em;
+        }
+        .headline {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 0.5em;
+        }
+        .subheadline {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+        .cta-button {
+            padding: 12px 24px;
+            font-size: 1.1em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #45a049;
+        }
+        .benefits {
+            min-height: auto;
+            padding: 4em 2em;
+        }
+        .benefits-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        .benefits h2 {
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 1em;
+        }
+        .benefits-list {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5em;
+        }
+        .benefit-item {
+            background-color: #fff;
+            padding: 1.5em;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        .benefit-item:hover {
+            transform: translateY(-5px);
+        }
+        .benefit-item strong {
+            display: block;
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #4CAF50;
+        }
+        .signup-form {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        .signup-form h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 1em;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5em;
+            color: #555;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        footer {
+            text-align: center;
+            padding: 1em;
+            background-color: #f8f8f8;
+        }
+        footer a {
+            color: #333;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        #confetti-canvas, #confetti-canvas-signup, #confetti-canvas-benefits {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .message {
+            margin-top: 1em;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <canvas id="confetti-canvas"></canvas>
+        <h1 class="headline">Be the First to Experience JUBILEE! 🎁</h1>
+        <p class="subheadline">Early access to the ultimate gift listing app. Sign up now to stay ahead!</p>
+        <button class="cta-button" onclick="scrollToSignup()">Early Access Sign-Up</button>
+    </header>
+
+    <section class="benefits">
+        <canvas id="confetti-canvas-benefits"></canvas>
+        <div class="benefits-container">
+            <h2>Why Sign Up for Early Access?</h2>
+            <ul class="benefits-list">
+                <li class="benefit-item">
+                    <strong>Exclusive Preview</strong>
+                    Get early access to all features before anyone else.
+                </li>
+                <li class="benefit-item">
+                    <strong>Special Updates</strong>
+                    Receive exclusive updates and offers.
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="signup-section" id="signup">
+        <canvas id="confetti-canvas-signup"></canvas>
+        <div class="signup-form">
+            <h2>Join the JUBILEE Early Access List</h2>
+            <form id="early-access-form" action="https://formspree.io/f/mgvwqbpw" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <button type="submit" class="cta-button">Sign Up for Early Access</button>
+            </form>
+            
+            <div id="message" style="display:none;"></div>
+            <div id="message" class="message"></div>
+        </div>
+    </section>
+
+    <footer>
+        <nav>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </nav>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tsparticles/2.9.3/tsparticles.bundle.min.js"></script>
+    <script>
+        function loadConfetti(elementId) {
+            tsParticles.load(elementId, {
+                particles: {
+                    number: {
+                        value: 0
+                    },
+                    color: {
+                        value: ["#00FFFC", "#FC00FF", "#fffc00"]
+                    },
+                    shape: {
+                        type: ["circle", "square", "character"],
+                        options: {
+                            character: {
+                                value: "🎁",
+                                font: "Arial",
+                                style: "",
+                                weight: "800",
+                                fill: true
+                            }
+                        }
+                    },
+                    opacity: {
+                        value: { min: 0, max: 1 },
+                        animation: {
+                            enable: true,
+                            speed: 2,
+                            startValue: "max",
+                            destroy: "min"
+                        }
+                    },
+                    size: {
+                        value: { min: 3, max: 7 }
+                    },
+                    life: {
+                        duration: {
+                            sync: true,
+                            value: 5
+                        },
+                        count: 1
+                    },
+                    move: {
+                        enable: true,
+                        gravity: {
+                            enable: true,
+                            acceleration: 10
+                        },
+                        speed: { min: 10, max: 20 },
+                        decay: 0.1,
+                        direction: "none"
+                    }
+                },
+                interactivity: {
+                    events: {
+                        onHover: {
+                            enable: false,
+                            mode: "repulse"
+                        },
+                        onClick: {
+                            enable: true,
+                            mode: "push"
+                        }
+                    },
+                    modes: {
+                        push: {
+                            quantity: 10
+                        }
+                    }
+                },
+                emitters: [
+                    {
+                        direction: "none",
+                        rate: {
+                            delay: 0.25,
+                            quantity: 10
+                        },
+                        position: {
+                            x: 50,
+                            y: 0
+                        },
+                        size: {
+                            width: 100,
+                            height: 0
+                        }
+                    }
+                ]
+            });
+        }
+
+        loadConfetti("confetti-canvas");
+        loadConfetti("confetti-canvas-signup");
+        loadConfetti("confetti-canvas-benefits");
+
+        function scrollToSignup() {
+            document.getElementById('signup').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        
+document.getElementById('early-access-form').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent default form submission
+    
+    var form = e.target; 
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var messageElement = document.getElementById('message');
+
+    var formData = new FormData(form);
+
+    fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response.ok) {
+            // Simulate successful submission message
+            setTimeout(function() {
+                messageElement.textContent = `Thank you, ${name}! Your email (${email}) has been sent to jubilee@myjubilee.co.za. We'll be in touch soon!`;
+                messageElement.className = 'message success';
+                messageElement.style.display = 'block';
+                
+                // Clear form fields
+                document.getElementById('name').value = '';
+                document.getElementById('email').value = '';
+            }, 1000); // Simulating a delay
+        } else {
+            response.json().then(data => {
+                messageElement.textContent = "Oops! There was a problem submitting your form.";
+                messageElement.className = 'message error';
+                messageElement.style.display = 'block';
+            });
+        }
+    }).catch(error => {
+        messageElement.textContent = "Oops! There was a problem submitting your form.";
+        messageElement.className = 'message error';
+        messageElement.style.display = 'block';
+    });
+});
+</script>
+</body>
+</html>
