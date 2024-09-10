@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to JUBILEE!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background: #f7f8fa;
+            text-align: center;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 2em;
+            background: whitesmoke;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2.5em;
+            color: rgb(153, 0, 153);
+            margin-bottom: 0.5em;
+            position: relative;
+            display: inline-block;
+        }
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: rgb(255, 242, 168);
+            border-radius: 5px;
+            z-index: -1;
+        }
+        p {
+            color: #555;
+            font-size: 1.2em;
+            margin: 1em 0;
+        }
+        .cta-button {
+            padding: 12px 24px;
+            font-size: 1.2em;
+            background-color: purple;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .cta-button:hover {
+            background-color: gold;
+            color: purple;
+            transform: translateY(-3px);
+        }
+        footer {
+            margin-top: 2em;
+            padding: 1em;
+            background-color: whitesmoke;
+            font-size: 0.9em;
+            color: #333;
+        }
+        footer a {
+            color: gold;
+            font-size: larger;
+            text-decoration: underline purple solid 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="confetti"></div>
+        <h1>🎁 Welcome to JUBILEE! 🎁 </h1>
+        <p>🎉 Thank you for signing up! 🎉</p>
+        <p>You're now on your way to creating the ultimate gift lists for every occasion. We're thrilled to have you with us!</p>
+        <p>Start exploring and building your lists now by clicking the button below:</p>
+        <a href="https://www.myjubilee.co.za" class="cta-button">Get Started</a>
+        <footer>
+            <p>If you have any questions, feel free to <a href="mailto:jubilee@myjubilee.co.za">contact us</a>.</p>
+        </footer>
+    </div>
+</body>
+</html>
