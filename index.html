@@ -26,29 +26,63 @@
             overflow: hidden;
             padding: 2em;
         }
-        .headline {
-            font-size: 2.5em;
-            color: #333;
-            margin-bottom: 0.5em;
-        }
-        .subheadline {
-            font-size: 1.2em;
-            color: #555;
-            margin-bottom: 1em;
-        }
-        .cta-button {
-            padding: 12px 24px;
-            font-size: 1.1em;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .cta-button:hover {
-            background-color: #45a049;
-        }
+        .hero-content {
+    z-index: 2;
+    max-width: 700px;
+    width: 100%;
+}
+
+.headline {
+    font-size: 3.5em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.highlight {
+    border-bottom: 4px solid #ffffff; /* Underline color and thickness */
+    padding-bottom: 2px; /* Space between text and underline */
+}
+.subheadline {
+    font-size: 1.5em;
+    margin-bottom: 2em;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.cta-button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    background-color: #ffffff;
+    color: #ff6f61;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button:hover {
+    background-color: #ff6f61;
+    color: #ffffff;
+    transform: translateY(-3px);
+}
+.animated-text {
+    display: inline;
+    background: linear-gradient(135deg, #9b59b6, #fffb19);
+    background-size: 400% 400%;
+    -webkit-background-clip: text; /* For WebKit-based browsers */
+    background-clip: text; /* Standard property */
+    -webkit-text-fill-color: transparent; /* For WebKit-based browsers */
+    color: transparent; /* For other browsers */
+    animation: gradientShift 5s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
         .benefits {
             min-height: auto;
             padding: 4em 2em;
@@ -156,23 +190,33 @@
 <body>
     <header class="hero">
         <canvas id="confetti-canvas"></canvas>
-        <h1 class="headline">🎁 Be the First to Experience JUBILEE! 🎁</h1>
-        <p class="subheadline">Early access to the ultimate gift listing app. Sign up now to stay ahead!</p>
-        <button class="cta-button" onclick="scrollToSignup()">Early Access Sign-Up</button>
+        <div class="hero-content">
+            <h1 class="headline">🎁 Unlock Exclusive Early Access to <span class="animated-text">JUBILEE!</span> 🎁</h1>
+            <p class="subheadline">Join now to be among the first to create and share the ultimate gift lists. Don't miss out on this exclusive opportunity!</p>
+            <button class="cta-button" onclick="scrollToSignup()">Get Early Access Now</button>
+        </div>
     </header>
 
     <section class="benefits">
         <canvas id="confetti-canvas-benefits"></canvas>
         <div class="benefits-container">
-            <h2>Why Sign Up for Early Access?</h2>
+            <h2>Unlock Exclusive Perks with Early Access</h2>
             <ul class="benefits-list">
                 <li class="benefit-item">
-                    <strong>Exclusive Preview</strong>
-                    Get early access to all features before anyone else.
+                    <strong>🚀 First in Line</strong>
+                    Be the first to experience groundbreaking features and create your own personalized lists before the public launch.
                 </li>
                 <li class="benefit-item">
-                    <strong>Special Updates</strong>
-                    Receive exclusive updates and offers.
+                    <strong>✨ Exclusive VIP Updates</strong>
+                    Stay in the loop with special insider updates, offers, and sneak peeks of what’s coming next.
+                </li>
+                <li class="benefit-item">
+                    <strong>💡 Influence Our Journey</strong>
+                    Share your feedback and help shape the future of Jubilee—your opinion matters!
+                </li>
+                <li class="benefit-item">
+                    <strong>🎉 Special Surprises</strong>
+                    As an early access member, you’ll receive exclusive bonuses and surprises tailored just for you.
                 </li>
             </ul>
         </div>
