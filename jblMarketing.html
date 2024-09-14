@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JUBILEE Fun Early Adopters Quiz</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+        .email-container {
+            max-width: 650px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        h1 {
+            color: #ff4081;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        p {
+            color: #555;
+            font-size: 16px;
+            margin: 0 0 15px;
+        }
+        .quiz-container {
+            text-align: left;
+            background-color: #f1f8ff;
+            padding: 20px;
+            border-radius: 15px;
+        }
+        .quiz-container h2 {
+            font-size: 20px;
+            color: #663399;
+            font-weight: bold;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 15px;
+            color: #333;
+        }
+        input[type="radio"], input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+        .submit-button {
+            display: inline-block;
+            padding: 15px 25px;
+            margin-top: 20px;
+            background-color: #ff4081;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(255, 64, 129, 0.3);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .submit-button:hover {
+            background-color: #ff80ab;
+            box-shadow: 0 6px 12px rgba(255, 64, 129, 0.4);
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #777;
+        }
+        .footer a {
+            color: #663399;
+            text-decoration: none;
+        }
+        .confetti {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10%;
+            background-image: url('confetti.webp'); /* Use a confetti gif */
+            background-size: cover;
+            opacity: 1;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .illustration {
+            width: 50%;
+            height: 50%;
+            z-index: 3;
+            position: relative;
+            margin: auto;
+        }
+        .highlight {
+            background-color: #ffecd2;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 16px;
+            color: #ff4081;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="confetti"></div> <!-- Confetti background -->
+        <img src="https://media.giphy.com/media/l46CvRFB1GqPYAOis/giphy.gif?cid=ecf05e47lunquojfxtfkk9i56ffuxnmp7b4sohrud51x7nxx&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Gift Illustration" class="illustration">
+        <h1>🎉 Welcome to JUBILEE's Fun Quiz! 🎉</h1>
+        <p>We're so excited to have you on board! Let's figure out the perfect gift list experience for you.</p>
+        <p class="highlight">Your feedback will help us make JUBILEE the best gift listing platform ever!</p>
+
+        <div class="quiz-container">
+            <h2>1. How do you currently manage your gift lists?</h2>
+            <label><input type="radio" name="currentMethod" value="NotesApp"> Using a notes app</label>
+            <label><input type="radio" name="currentMethod" value="Spreadsheet"> Spreadsheet or Google Sheets</label>
+            <label><input type="radio" name="currentMethod" value="WishlistWebsite"> Dedicated wishlist websites</label>
+            <label><input type="radio" name="currentMethod" value="Memory"> I just rely on my memory</label>
+            <label><input type="radio" name="currentMethod" value="Other"> Other methods</label>
+            
+            <h2>2. What features would make a gift listing app useful for you? (Select all that apply)</h2>
+            <label><input type="checkbox" name="features" value="GiftSuggestions"> Gift suggestions based on occasion</label>
+            <label><input type="checkbox" name="features" value="CollaborativeLists"> Collaborative gift lists</label>
+            <label><input type="checkbox" name="features" value="PriceTracking"> Price tracking and alerts</label>
+            <label><input type="checkbox" name="features" value="CustomGiftTags"> Ability to tag gifts with custom tags</label>
+            <label><input type="checkbox" name="features" value="VendorComparison"> Vendor comparison (e.g., Amazon, Etsy)</label>
+            <label><input type="checkbox" name="features" value="LinkToOnlineStores"> Easy linking to online stores</label>
+            <label><input type="checkbox" name="features" value="CalendarIntegration"> Calendar integration for reminder of upcoming events</label>
+
+            <h2>3. What kinds of gifts are you most often searching for? (Select all that apply)</h2>
+            <label><input type="checkbox" name="giftTypes" value="ClothingAccessories"> Clothing & Accessories</label>
+            <label><input type="checkbox" name="giftTypes" value="Electronics"> Electronics & Gadgets</label>
+            <label><input type="checkbox" name="giftTypes" value="ToysGames"> Toys & Games</label>
+            <label><input type="checkbox" name="giftTypes" value="HomeDecor"> Home Decor & Furniture</label>
+            <label><input type="checkbox" name="giftTypes" value="PersonalizedGifts"> Personalized Gifts</label>
+            <label><input type="checkbox" name="giftTypes" value="SubscriptionServices"> Subscription Services</label>
+
+            <h2>4. What are your biggest pain points when it comes to finding the perfect gift? (Select all that apply)</h2>
+            <label><input type="checkbox" name="painPoints" value="TooMuchChoice"> Too many options, hard to decide</label>
+            <label><input type="checkbox" name="painPoints" value="NotPersonalized"> Difficulty finding personalized gifts</label>
+            <label><input type="checkbox" name="painPoints" value="TooTimeConsuming"> Finding the right gift takes too long</label>
+            <label><input type="checkbox" name="painPoints" value="NoPriceAlerts"> No price tracking or alerts for when gifts are on sale</label>
+            <label><input type="checkbox" name="painPoints" value="NoCollaborativeOptions"> Can't collaborate with others on gift lists</label>
+
+            <h2>5. Do you have a favorite occasion to create gift lists for?</h2>
+            <label><input type="radio" name="favoriteOccasion" value="Birthdays"> Birthdays</label>
+            <label><input type="radio" name="favoriteOccasion" value="Weddings"> Weddings</label>
+            <label><input type="radio" name="favoriteOccasion" value="Holidays"> Holidays</label>
+            <label><input type="radio" name="favoriteOccasion" value="BabyShowers"> Baby Showers</label>
+            <label><input type="radio" name="favoriteOccasion" value="Other"> Other</label>
+
+            <h2>6. How do you discover new gift ideas?</h2>
+            <label><input type="radio" name="discoveryMethod" value="SocialMedia"> Social media (Instagram, Pinterest, etc.)</label>
+            <label><input type="radio" name="discoveryMethod" value="WordOfMouth"> Word of mouth or recommendations from friends</label>
+            <label><input type="radio" name="discoveryMethod" value="OnlineRetailers"> Browsing online retailers (e.g., Takealot)</label>
+            <label><input type="radio" name="discoveryMethod" value="BlogsNewsletters"> Blogs, newsletters, or magazines</label>
+            <label><input type="radio" name="discoveryMethod" value="Other"> Other</label>
+
+            <h2>7. What motivates you most when selecting a gift? (Select all that apply)</h2>
+            <label><input type="checkbox" name="motivation" value="PersonalTouch"> Personal touch and uniqueness</label>
+            <label><input type="checkbox" name="motivation" value="AffordablePrice"> Affordable price</label>
+            <label><input type="checkbox" name="motivation" value="Convenience"> Ease of finding and buying</label>
+            <label><input type="checkbox" name="motivation" value="Quality"> High-quality, long-lasting gifts</label>
+            <label><input type="checkbox" name="motivation" value="BrandReputation"> Reputation of the brand or vendor</label>
+
+            <h2>8. How important is it for you to receive reminders or notifications for upcoming events?</h2>
+            <label><input type="radio" name="reminders" value="VeryImportant"> Very important, I rely on them</label>
+            <label><input type="radio" name="reminders" value="SomewhatImportant"> Somewhat important, but not essential</label>
+            <label><input type="radio" name="reminders" value="NotImportant"> Not important, I keep track on my own</label>
+
+            <h2>9. In your opinion, what’s the best way for us to improve your gift-giving experience?</h2>
+            <textarea name="improvementSuggestion" rows="4" placeholder="Please share any ideas or suggestions you have..."></textarea>
+
+            <h2>10. Is there anything else you'd like to see on JUBILEE that we haven't covered?</h2>
+            <textarea name="otherSuggestions" rows="4" placeholder="Share any additional thoughts or requests..."></textarea>
+
+            <a href="mailto:jubilee@myjubilee.co.za" class="submit-button">Submit Your Feedback</a>
+        </div>
+
+        <footer>
+            <p>Thank you for helping us build JUBILEE. Your feedback is truly appreciated! 💜</p>
+            <p><a href="www.myjubilee.co.za">Visit our website</a> | <a href="mailto:jubilee@myjubilee.co.za">Contact us</a></p>
+        </footer>
+    </div>
+</body>
+</html>

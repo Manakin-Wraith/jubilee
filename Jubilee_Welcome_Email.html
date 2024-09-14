@@ -61,6 +61,26 @@
             color: purple;
             transform: translateY(-3px);
         }
+        form {
+            margin: 2em 0;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin: 0.5em 0 0.2em;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        textarea {
+            resize: vertical;
+        }
         footer {
             margin-top: 2em;
             padding: 1em;
@@ -73,16 +93,39 @@
             font-size: larger;
             text-decoration: underline purple solid 1px;
         }
+
+        /* Media Queries for Responsive Design */
+        @media only screen and (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            .cta-button {
+                font-size: 1em;
+                padding: 10px 20px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="email-container">
-        <div class="confetti"></div>
-        <h1>🎁 Welcome to JUBILEE! 🎁 </h1>
+        <h1>🎁 Welcome to JUBILEE! 🎁</h1>
         <p>🎉 Thank you for signing up! 🎉</p>
-        <p>You're now on your way to creating the ultimate gift lists for every occasion. We're thrilled to have you with us!</p>
-        <p>Start exploring and building your lists now by clicking the button below:</p>
-        <a href="https://www.myjubilee.co.za" class="cta-button">Get Started</a>
+        <p>We're excited to have you join us. While our list creation feature is coming soon, we’d love to hear about your experiences and challenges when finding the perfect gift.</p>
+        
+        <form action="mailto:jubilee@myjubilee.co.za?subject=Feedback%20from%20JUBILEE%20User" method="post" enctype="text/plain">
+
+            <label for="painPoints">What are the biggest challenges you face when trying to find the perfect gift?</label>
+            <textarea id="painPoints" name="painPoints" rows="4" required></textarea>
+            
+            <label for="idealGift">Describe your ideal gift-finding experience. What features would make it easier for you?</label>
+            <textarea id="idealGift" name="idealGift" rows="4" required></textarea>
+            
+            <label for="preferences">Do you have any preferences or specific needs that you'd like us to consider?</label>
+            <textarea id="preferences" name="preferences" rows="4"></textarea>
+            
+            <input type="submit" value="Submit Feedback" class="cta-button">
+        </form>
+
         <footer>
             <p>If you have any questions, feel free to <a href="mailto:jubilee@myjubilee.co.za">contact us</a>.</p>
         </footer>
