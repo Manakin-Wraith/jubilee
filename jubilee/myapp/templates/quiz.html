@@ -95,6 +95,16 @@
         .form-group textarea {
             resize: vertical;
         }
+
+        #thank-you-popup {
+           padding: 20px;
+           background-color: #d4edda;
+           color: #155724;
+           border-radius: 5px;
+           display: inline-block;
+           margin-top: 20px;
+        }
+
         footer {
             text-align: center;
             padding: 1em;
@@ -144,52 +154,245 @@
     <section class="quiz-section" id="quiz">
         <canvas id="confetti-canvas-quiz"></canvas>
         <div class="quiz-form">
-            <h2>Marketing Quiz</h2>
-            <form action="https://formspree.io/f/mgvwqbpw" method="POST">
+            <h2>📈 Marketing Quiz 📈</h2>
+            <form id="quiz-form" action="https://formspree.io/f/mgvwqbpw" method="POST">
                 {% csrf_token %}
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="q1">1. What type of gifts are you most interested in?</label>
-                    <select id="q1" name="q1" required>
-                        <option value="" disabled selected>Select an option</option>
-                        <option value="tech">Tech Gadgets</option>
-                        <option value="toys">Toys</option>
-                        <option value="books">Books</option>
-                        <option value="clothing">Clothing</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="q2">2. How often do you buy gifts?</label>
-                    <select id="q2" name="q2" required>
-                        <option value="" disabled selected>Select an option</option>
-                        <option value="monthly">Monthly</option>
-                        <option value="quarterly">Quarterly</option>
-                        <option value="annually">Annually</option>
-                        <option value="rarely">Rarely</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="q3">3. What is your biggest challenge when choosing a gift?</label>
-                    <textarea id="q3" name="q3" rows="4" required></textarea>
-                </div>
-                <button type="submit" class="cta-button">Submit Quiz</button>
-            </form>
-            
-            <!-- Thank you message popup -->
-<div id="thank-you-popup" style="display:none;">
-    <div>
-        <p>Thank you for your submission!</p>
-        <button onclick="closePopup()">Close</button>
+                 <!-- Step 1: User Information -->
+<div class="form-step" id="step-1">
+    <div class="form-group">
+        <label for="name">Name and Surname</label>
+        <input type="text" id="name" name="name" required>
     </div>
+    <div class="form-group">
+        <label for="phone">Cellphone number</label>
+        <input type="tel" id="phone" name="phone" required>
+    </div>
+    <button type="button" class="cta-button" onclick="nextStep(1)">Next</button>
 </div>
+
+<!-- Step 2: General Questions -->
+<div class="form-step" id="step-2" style="display:none;">
+    <div class="form-group">
+        <label for="q1">1. What type of gifts are you most interested in? 🎁</label>
+        <select id="q1" name="q1" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="tech">Tech Gadgets</option>
+            <option value="toys">Toys</option>
+            <option value="books">Books</option>
+            <option value="clothing">Clothing</option>
+            <option value="other">Other 🌟</option>
+        </select>
+        <textarea id="q1-other" name="q1-other" rows="4" style="display:none;" placeholder="Please specify"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="q2">2. How often do you buy gifts? 🎁</label>
+        <select id="q2" name="q2" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="monthly">Monthly</option>
+            <option value="quarterly">Quarterly</option>
+            <option value="annually">Annually</option>
+            <option value="rarely">Rarely</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="q3">3. What is your biggest challenge when choosing a gift? 😕</label>
+        <textarea id="q3" name="q3" rows="4" required></textarea>
+    </div>
+    <button type="button" class="cta-button" onclick="nextStep(2)">Next</button>
+</div>
+
+<!-- Step 3: Pain Points -->
+<div class="form-step" id="step-3" style="display:none;">
+    <div class="form-group">
+        <label for="q4">4. What is the hardest part of finding gifts? 😫</label>
+        <select id="q4" name="q4" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="unique">Finding something unique</option>
+            <option value="preferences">Knowing what the person will like</option>
+            <option value="price">Balancing quality with price</option>
+            <option value="time">Running out of time</option>
+            <option value="other">Other</option>
+        </select>
+        <textarea id="q4-other" name="q4-other" rows="4" style="display:none;" placeholder="Please specify"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="q5">5. How do you usually find gift ideas? 💡</label>
+        <select id="q5" name="q5" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="online">Online search (Google, Pinterest)</option>
+            <option value="recommendations">Recommendations from friends or family</option>
+            <option value="social">Social media (Instagram, Facebook)</option>
+            <option value="wishlists">Wish lists or registries</option>
+            <option value="struggle">I struggle to find ideas</option>
+        </select>
+    </div>
+    <button type="button" class="cta-button" onclick="nextStep(3)">Next</button>
+</div>
+
+<!-- Step 4: User Experience -->
+<div class="form-step" id="step-4" style="display:none;">
+    <div class="form-group">
+        <label for="q6">6. Would you find it helpful to see curated gift suggestions based on preferences? 🎯</label>
+        <select id="q6" name="q6" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="yes">Yes, definitely</option>
+            <option value="maybe">Maybe, but I prefer browsing myself</option>
+            <option value="no">No, I prefer coming up with ideas on my own</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="q7">7. How much time do you usually spend searching for a gift? ⏰</label>
+        <select id="q7" name="q7" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="less_15">Less than 15 minutes</option>
+            <option value="15_30">15-30 minutes</option>
+            <option value="30_60">30 minutes to 1 hour</option>
+            <option value="more_60">More than an hour</option>
+        </select>
+    </div>
+    <button type="button" class="cta-button" onclick="nextStep(4)">Next</button>
+</div>
+<!-- Step 5: Shopping Frequency -->
+<div class="form-step" id="step-5" style="display:none;">
+    <div class="form-group">
+        <label for="shopping-frequency">How often do you shop for gifts or products? 🛍️</label>
+        <select id="shopping-frequency" name="shopping-frequency" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+            <option value="few-times-a-year">A few times a year</option>
+            <option value="rarely">Rarely</option>
+        </select>
+    </div>
+    <button type="button" class="cta-button" onclick="nextStep(5)">Next</button>
+</div>
+
+<!-- Step 6: Shopping Channels -->
+<div class="form-step" id="step-6" style="display:none;">
+    <div class="form-group">
+        <label for="shopping-channels">Where do you typically shop for gifts or products? 🛒</label>
+        <select id="shopping-channels" name="shopping-channels" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="online">Online (e.g., Amazon, eBay)</option>
+            <option value="physical-stores">Physical stores (e.g., malls, boutiques)</option>
+            <option value="both">Both online and physical stores</option>
+            <option value="prefer-not-to-shop">I prefer not to shop for gifts</option>
+        </select>
+    </div>
+    <button type="button" class="cta-button" onclick="nextStep(6)">Next</button>
+</div>
+
+<!-- Step 7: Decision-Making Process -->
+<div class="form-step" id="step-7" style="display:none;">
+    <div class="form-group">
+        <label for="decision-making">How do you usually decide what to buy? 🤔</label>
+        <select id="decision-making" name="decision-making" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="research-online">I research online before making a decision</option>
+            <option value="recommendations">I rely on recommendations from friends and family</option>
+            <option value="impulse-promotions">I shop based on impulse or current promotions</option>
+            <option value="known-brands">I stick to brands or stores I already know</option>
+        </select>
+    </div>
+    <button type="button" class="cta-button" onclick="nextStep(7)">Next</button>
+</div>
+
+<!-- Step 8: Budgeting -->
+<div class="form-step" id="step-8" style="display:none;">
+    <div class="form-group">
+        <label for="budgeting">How do you approach budgeting when shopping for gifts? 💵</label>
+        <select id="budgeting" name="budgeting" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="set-budget">I set a budget before shopping and stick to it</option>
+            <option value="general-idea">I have a general idea of my budget but am flexible</option>
+            <option value="no-budget">I don’t usually budget; I buy what feels right</option>
+            <option value="sales-discounts">I wait for sales or discounts to make purchases</option>
+        </select>
+    </div>
+    <button type="button" class="cta-button" onclick="nextStep(8)">Next</button>
+</div>
+
+<!-- Step 9: Shopping Experience -->
+<div class="form-step" id="step-9" style="display:none;">
+    <div class="form-group">
+        <label for="shopping-experience">What type of shopping experience do you prefer? 🛍️</label>
+        <select id="shopping-experience" name="shopping-experience" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="in-store">In-store shopping with hands-on experience</option>
+            <option value="online">Online shopping with home delivery</option>
+            <option value="both">A mix of both online and in-store</option>
+            <option value="curated-recommendations">I prefer shopping through curated recommendations</option>
+        </select>
+    </div>
+    <button type="button" class="cta-button" onclick="nextStep(9)">Next</button>
+</div>
+
+<!-- Step 10: Research and Planning -->
+<div class="form-step" id="step-10" style="display:none;">
+    <div class="form-group">
+        <label for="research-planning">How do you prepare for a shopping trip or purchase? 📝</label>
+        <select id="research-planning" name="research-planning" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="detailed-list">I make a detailed shopping list or plan ahead</option>
+            <option value="quick-research">I do some quick online research before buying</option>
+            <option value="browse-randomly">I browse randomly without a specific plan</option>
+            <option value="spontaneous">I rely on spontaneous shopping without prior research</option>
+        </select>
+    </div>
+    <button type="button" class="cta-button" onclick="nextStep(10)">Next</button>
+</div>
+
+<!-- Step 11: Response to Promotions -->
+<div class="form-step" id="step-11" style="display:none;">
+    <div class="form-group">
+        <label for="response-promotions">How do you usually respond to sales or promotional offers? 🤑</label>
+        <select id="response-promotions" name="response-promotions" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="seek-out">I actively seek out sales and promotions</option>
+            <option value="occasional">I occasionally take advantage of sales if they align with my needs</option>
+            <option value="rarely">I rarely respond to promotions; I buy based on necessity</option>
+            <option value="avoid">I avoid sales if they feel overwhelming or confusing</option>
+        </select>
+    </div>
+    <button type="button" class="cta-button" onclick="nextStep(11)">Next</button>
+</div>
+
+<!-- Step 12: Brand Loyalty -->
+<div class="form-step" id="step-12" style="display:none;">
+    <div class="form-group">
+        <label for="brand-loyalty">Do you have loyalty to specific brands or stores? 🏷️</label>
+        <select id="brand-loyalty" name="brand-loyalty" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="yes">Yes, I prefer to shop from certain brands or stores</option>
+            <option value="no">No, I shop around for the best options regardless of brand</option>
+            <option value="specific">I’m loyal to certain brands for specific types of products</option>
+            <option value="indifferent">I am indifferent to brand loyalty and focus on product quality</option>
+        </select>
+    </div>
+    <button type="button" class="cta-button" onclick="nextStep(12)">Next</button>
+</div>
+
+<!-- Step 13: Influence of Reviews -->
+<div class="form-step" id="step-13" style="display:none;">
+    <div class="form-group">
+        <label for="influence-reviews">How important are customer reviews in your shopping decisions? ⭐</label>
+        <select id="influence-reviews" name="influence-reviews" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="very-important">Very important; I read reviews extensively before purchasing</option>
+            <option value="somewhat-important">Somewhat important; I glance at reviews but not always</option>
+            <option value="not-important">Not important; I rarely check reviews before buying</option>
+            <option value="recommendations">I trust recommendations from friends and family more than reviews</option>
+        </select>
+    </div>
+    <button type="submit" class="cta-button">Submit Quiz</button>
+</div>
+    </div>
+    <div id="thank-you-popup" style="display:none;">
+        <h3>Thank You!</h3>
+        <p>Your responses have been submitted. 🎉</p>
+    </div>
+</section>
 
 <script>
 function closePopup() {
@@ -330,32 +533,47 @@ document.getElementById('quiz-form').addEventListener('submit', function(event) 
             document.getElementById('quiz').scrollIntoView({ behavior: 'smooth' });
         }
 
-        document.getElementById('quiz-form').addEventListener('submit', function (event) {
-            event.preventDefault();
-            const form = event.target;
-            const message = document.getElementById('message');
+        document.getElementById('quiz-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
 
-            fetch(form.action, {
-                method: form.method,
-                body: new FormData(form)
-            })
-            .then(response => {
-                if (response.ok) {
-                    message.className = 'message success';
-                    message.textContent = 'Thank you for taking the quiz! We will get back to you soon.';
-                    form.reset();
-                } else {
-                    message.className = 'message error';
-                    message.textContent = 'Oops! Something went wrong. Please try again.';
-                }
-                message.style.display = 'block';
-            })
-            .catch(() => {
-                message.className = 'message error';
-                message.textContent = 'Oops! Something went wrong. Please try again.';
-                message.style.display = 'block';
-            });
-        });
+    var form = this;
+    var formData = new FormData(form);
+
+    // Log form data for debugging
+    for (var [key, value] of formData.entries()) {
+        console.log(key, value);
+    }
+
+    fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(function(response) {
+        if (response.ok) {
+            // Display thank you popup
+            document.getElementById('thank-you-popup').style.display = 'block';
+        } else {
+            // Handle errors if needed
+            alert('There was a problem with your submission.');
+        }
+    }).catch(function(error) {
+        // Handle errors if needed
+        console.error('Error:', error);
+        alert('There was a problem with your submission.');
+    });
+});
+    </script>
+    <script>
+        function nextStep(currentStep) {
+            // Hide the current step
+            document.getElementById('step-' + currentStep).style.display = 'none';
+    
+            // Show the next step
+            document.getElementById('step-' + (currentStep + 1)).style.display = 'block';
+        }
+    
     </script>
 </body>
 </html>

@@ -9,6 +9,9 @@ def home(request):
 def thank_you(request):
     return render(request, 'thank_you.html')
 
+def game_view(request):
+    return render(request, 'game.html')
+
 def quiz_form(request):
     if request.method == 'POST':
         name = request.POST.get('name')

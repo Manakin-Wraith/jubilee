@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    cursor: crosshair;
+}
+
+#gameArea {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(180deg, #A7C7E7 0%, #f0f8ff 100%);
+}
+
+#basket {
+    position: absolute;
+    bottom: 20px;
+    width: 120px;
+    height: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: url('/static/images/basket.png') no-repeat;
+    background-size: contain;
+    z-index: 10;
+}
+
+.gift, .bad-gift {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-size: contain;
+}
+
+.gift {
+    background: url('/static/images/gift.png') no-repeat;
+}
+
+.bad-gift {
+    background: url('/static/images/bomb.png') no-repeat;
+}
+
+#scoreboard, #lives {
+    position: absolute;
+    top: 10px;
+    font-size: 24px;
+    color: #333;
+}
+
+#scoreboard { left: 10px; }
+#lives { right: 10px; }
+
+.explosion {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: url('/static/images/explosion.png') no-repeat;
+    background-size: contain;
+    pointer-events: none;
+    z-index: 9;
+}
