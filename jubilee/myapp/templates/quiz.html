@@ -64,6 +64,23 @@
             color: #ffffff;
             transform: translateY(-3px);
         }
+        .animated-text {
+    display: inline;
+    background: linear-gradient(135deg, #9b59b6, #fffb19);
+    background-size: 400% 400%;
+    -webkit-background-clip: text; /* For WebKit-based browsers */
+    background-clip: text; /* Standard property */
+    -webkit-text-fill-color: transparent; /* For WebKit-based browsers */
+    color: transparent; /* For other browsers */
+    animation: gradientShift 5s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
         .quiz-form {
             background-color: rgba(255, 255, 255, 0.9);
             padding: 2em;
@@ -145,7 +162,7 @@
     <header class="hero">
         <canvas id="confetti-canvas"></canvas>
         <div class="hero-content">
-            <h1 class="headline">🎁 Take Our Marketing Quiz and Win Exciting Prizes! 🎁</h1>
+            <h1 class="headline">🎁 Take Our Quiz and help us shape <span class="animated-text">JUBILEE!</span> 🎁</h1>
             <p class="subheadline">Find out how we can make your gift shopping even more amazing. Participate now and get exclusive access!</p>
             <button class="cta-button" onclick="scrollToQuiz()">Take the Quiz</button>
         </div>
@@ -156,7 +173,6 @@
         <div class="quiz-form">
             <h2>📈 Marketing Quiz 📈</h2>
             <form id="quiz-form" action="https://formspree.io/f/mgvwqbpw" method="POST">
-                {% csrf_token %}
                  <!-- Step 1: User Information -->
 <div class="form-step" id="step-1">
     <div class="form-group">
